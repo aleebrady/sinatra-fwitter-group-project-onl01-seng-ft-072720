@@ -1,0 +1,15 @@
+  <% if @tweet %>
+<h3>This tweet belongs to <%= User.all.find {|user| user.id == @tweet.user_id}.username %></h3>
+<p><%= @tweet.content %></p>
+
+<br>
+<h3><a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a></h3>
+<br>
+<form method="POST" action="/tweets/<%= @tweet.id %>">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+
+    <input type="submit" id="submit" value="Delete Tweet">
+</form>
+<% else %>
+<h3>This user does not have any tweet content</h3>
+<% end %>
